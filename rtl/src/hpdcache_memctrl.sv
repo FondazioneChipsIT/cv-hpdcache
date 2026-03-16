@@ -353,6 +353,8 @@ import hpdcache_pkg::*;
     hpdcache_tag_t                             dir_inval_tag;
     hpdcache_set_t                             dir_inval_set;
     hpdcache_way_vector_t                      dir_inval_hit_way;
+
+    hpdcache_data_row_enable_t                 word_sel_rd, word_sel_wr;
     //  }}}
 
     //  Init FSM
