@@ -139,9 +139,12 @@ module hpdcache_fifo_reg
 
         //  FIFO buffer memory management
         //  {{{
-        always_ff @(posedge clk_i)
+        always_ff @(posedge clk_i or negedge rst_ni)
         begin
-            if (wexec) fifo_mem_q[wptr_q] <= wdata_i;
+            if (!rst_ni) fifo_mem_q <= '0;
+            else begin
+                if (wexec) fifo_mem_q[wptr_q] <= wdata_i;
+            end
         end
 
         assign rdata_o = FEEDTHROUGH && empty ? wdata_i : fifo_mem_q[rptr_q];
